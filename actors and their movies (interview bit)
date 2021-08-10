@@ -1,0 +1,6 @@
+select  distinct m.movie_title as movie_title from 
+movies m inner join movies_cast mc 
+on m.movie_id = mc.movie_id
+-- inner join actors a
+-- on m.actor_id = a.actor_id
+where mc.actor_id IN (select actor_id from movies_cast  group by  actor_id having count(actor_id)>1) ;
